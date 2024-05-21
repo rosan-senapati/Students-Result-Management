@@ -76,7 +76,7 @@ class Home {
       }
     });
     frame.add(b3);
-
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
     frame.setVisible(true);
 
   }
