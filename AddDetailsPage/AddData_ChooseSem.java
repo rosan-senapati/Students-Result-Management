@@ -67,7 +67,7 @@ public class AddData_ChooseSem {
     b2.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
     b2.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent arg3) {
-        SEM2 sm2 = new SEM2();
+        SEM2 sm2 = new SEM2(t1.getText());
       }
     });
     frame.add(b2);
@@ -143,8 +143,8 @@ public class AddData_ChooseSem {
             JOptionPane.showMessageDialog(frame, "Data Already Existed..");
 
           }
-          t1.setText(null);
-          t2.setText(null);
+          // t1.setText(null);
+          // t2.setText(null);
           //This is for showing semester button after successfully submiting the data
           b1.setVisible(true);
           b2.setVisible(true);

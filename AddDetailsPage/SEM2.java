@@ -3,15 +3,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.sql.*;
 public class SEM2 {
     JFrame frame;
     JLabel h1, h2, h3, l1, l2, l3, l4, l5,p1,p2,p3,p4;
     JTextField t1,t2,t3,t4,t5,t7,t8,t9,t10;
     
     JButton b1,b2;
+    String sic;
 
-    public SEM2() {
+    public SEM2(String sic) {
+        this.sic = sic;
+        
 
         // For Frame
         frame = new JFrame("SGPA Generator"); // THis Needs to be updated
@@ -38,28 +41,28 @@ public class SEM2 {
         l1.setFont(new Font("Arial", Font.CENTER_BASELINE, 30));
         frame.add(l1);
 
-        //For Text-1
+        //For Text-1   DSA
         t1=new JTextField("");   
         t1.setBounds(800,170,100,30);
         frame.add(t1);
 
-        //For Text-2
+        //For Text-2        JAVA
         t2=new JTextField("");   
         t2.setBounds(800,227,100,30);
         frame.add(t2);
         
-        //For Text-3
+        //For Text-3        DBMS
         t3=new JTextField("");   
         t3.setBounds(800,283,100,30);
         frame.add(t3);
         
-        //For Text-4
+        //For Text-4        ECOM
         t4=new JTextField("");   
         t4.setBounds(800,333,100,30);
         frame.add(t4);
         
         
-        //For Text-5
+        //For Text-5             SEU
         t5=new JTextField("");   
         t5.setBounds(800,383,100,30);
         frame.add(t5);
@@ -122,23 +125,23 @@ public class SEM2 {
         p4.setBounds(350, 700, 400, 50);
         p4.setFont(new Font("Arial", Font.CENTER_BASELINE, 30));
         frame.add(p4);
-
-         //For Text-7
+ 
+         //For Text-7             DSA LAB
          t7=new JTextField("");   
          t7.setBounds(800,557,100,30);
          frame.add(t7);
          
-         //For Text-8
+         //For Text-8             JAVA LAB
          t8=new JTextField("");   
          t8.setBounds(800,607,100,30);
          frame.add(t8);
          
-         //For Text-9
+         //For Text-9              SEU LAB
          t9=new JTextField("");   
          t9.setBounds(800,656,100,30);
          frame.add(t9);
 
-         // For Text-10
+         // For Text-10          DBMS LAB
         t10 = new JTextField("");
         t10.setBounds(800, 710, 100, 30);
         frame.add(t10);
@@ -147,6 +150,53 @@ public class SEM2 {
         b1 = new JButton("ADD");
         b1.setBounds(350, 750, 200, 50);
         b1.setFont(new Font("Arial", Font.BOLD, 20));
+        b1.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent arg) {
+        try {
+          // here i Implimented to parse empty or non empty string to integer
+          int dsa = (t1.getText().length() != 0) ? Integer.parseInt(t1.getText()) : 0;
+          int java = (t2.getText().length() != 0) ? Integer.parseInt(t2.getText()) : 0;
+          int dbms = (t3.getText().length() != 0) ? Integer.parseInt(t3.getText()) : 0;
+          int ecom = (t4.getText().length() != 0) ? Integer.parseInt(t4.getText()) : 0;
+          int seu = (t5.getText().length() != 0) ? Integer.parseInt(t5.getText()) : 0;
+          int dsa_lab = (t7.getText().length() != 0) ? Integer.parseInt(t7.getText()) : 0;
+          int java_lab = (t8.getText().length() != 0) ? Integer.parseInt(t8.getText()) : 0;
+          int seu_lab = (t9.getText().length() != 0) ? Integer.parseInt(t9.getText()) : 0;
+          int dbms_lab = (t10.getText().length() != 0) ? Integer.parseInt(t10.getText()) : 0;
+          Class.forName("oracle.jdbc.driver.OracleDriver");
+
+          Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "1234");
+          String qry = "INSERT INTO SEM_2 VALUES('" + sic + "'," + dsa+ "," + java + "," + dbms + "," + ecom + "," + seu+ "," + dsa_lab + "," + java_lab + "," + seu_lab + "," + dbms_lab + ")";
+          Statement s1 = conn.createStatement();
+          int i = s1.executeUpdate(qry);
+          if (i > 0) {
+            JOptionPane.showMessageDialog(frame, "Data Added");
+
+          }
+          s1.close();
+          conn.close();
+
+        } catch (ClassNotFoundException cne) {
+          System.out.println(cne);
+        } catch (SQLException se) {
+          JOptionPane.showMessageDialog(frame,"Enter Valid Input","Alert",JOptionPane.WARNING_MESSAGE);
+        }
+        catch(NumberFormatException ne)
+        {
+          JOptionPane.showMessageDialog(frame,"Enter Valid Input","Alert",JOptionPane.WARNING_MESSAGE);
+        }
+        t1.setText(null);
+        t2.setText(null);
+        t3.setText(null);
+        t4.setText(null);
+        t5.setText(null);
+        t7.setText(null);
+        t8.setText(null);
+        t9.setText(null);
+        t10.setText(null);
+
+      }
+    });
         frame.add(b1);
          
          // For Button-2
@@ -175,6 +225,6 @@ public class SEM2 {
     }
 
     // public static void main(String args[]) {
-    //     SEM2 sm = new SEM2();
+    //     SEM2 sm = new SEM2("23mmci36");
     // }
 }

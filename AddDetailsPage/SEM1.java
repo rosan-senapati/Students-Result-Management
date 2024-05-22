@@ -151,17 +151,17 @@ public class SEM1 {
     /* Here i Implemented to push All the Mark detail to SEM_1 table */
     b1.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent arg) {
-        // here i Implimented to parse empty or non empty string to integer
-        int math = (t1.getText().length() != 0) ? Integer.parseInt(t1.getText()) : 0;
-        int os = (t2.getText().length() != 0) ? Integer.parseInt(t2.getText()) : 0;
-        int coa = (t3.getText().length() != 0) ? Integer.parseInt(t3.getText()) : 0;
-        int c = (t4.getText().length() != 0) ? Integer.parseInt(t4.getText()) : 0;
-        int cn = (t5.getText().length() != 0) ? Integer.parseInt(t5.getText()) : 0;
-        int eng = (t6.getText().length() != 0) ? Integer.parseInt(t6.getText()) : 0;
-        int c_lab = (t7.getText().length() != 0) ? Integer.parseInt(t7.getText()) : 0;
-        int os_lab = (t8.getText().length() != 0) ? Integer.parseInt(t8.getText()) : 0;
-        int eng_lab = (t9.getText().length() != 0) ? Integer.parseInt(t9.getText()) : 0;
         try {
+          // here i Implimented to parse empty or non empty string to integer
+          int math = (t1.getText().length() != 0) ? Integer.parseInt(t1.getText()) : 0;
+          int os = (t2.getText().length() != 0) ? Integer.parseInt(t2.getText()) : 0;
+          int coa = (t3.getText().length() != 0) ? Integer.parseInt(t3.getText()) : 0;
+          int c = (t4.getText().length() != 0) ? Integer.parseInt(t4.getText()) : 0;
+          int cn = (t5.getText().length() != 0) ? Integer.parseInt(t5.getText()) : 0;
+          int eng = (t6.getText().length() != 0) ? Integer.parseInt(t6.getText()) : 0;
+          int c_lab = (t7.getText().length() != 0) ? Integer.parseInt(t7.getText()) : 0;
+          int os_lab = (t8.getText().length() != 0) ? Integer.parseInt(t8.getText()) : 0;
+          int eng_lab = (t9.getText().length() != 0) ? Integer.parseInt(t9.getText()) : 0;
           Class.forName("oracle.jdbc.driver.OracleDriver");
 
           Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "1234");
@@ -179,7 +179,11 @@ public class SEM1 {
         } catch (ClassNotFoundException cne) {
           System.out.println(cne);
         } catch (SQLException se) {
-          System.err.println(se);
+          JOptionPane.showMessageDialog(frame,"Enter Valid Input","Alert",JOptionPane.WARNING_MESSAGE);
+        }
+        catch(NumberFormatException ne)
+        {
+          JOptionPane.showMessageDialog(frame,"Enter Valid Input","Alert",JOptionPane.WARNING_MESSAGE);
         }
         t1.setText(null);
         t2.setText(null);
