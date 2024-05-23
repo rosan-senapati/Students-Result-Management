@@ -32,3 +32,31 @@ CREATE TABLE SEM_2 (SIC VARCHAR(10),DSA NUMBER(4) DEFAULT 0,JAVA NUMBER(4) DEFAU
 DESC SEM_2
 
 SELECT * FROM SEM_2
+
+
+
+SEM_3
+----------------------------------------------------------------------------------------------------------------
+CREATE TABLE SEM_3 (SIC VARCHAR(10),DAA NUMBER(4) DEFAULT 0,WEB_DEV NUMBER(4) DEFAULT 0,PE1 NUMBER(4) DEFAULT 0,PE2 NUMBER(4) DEFAULT 0,PE3 NUMBER(4) DEFAULT 0,UHV_PE NUMBER(4) DEFAULT 0,DAA_LAB NUMBER(4) DEFAULT 0,PYTHON_LAB NUMBER(4) DEFAULT 0,WEBDEV_LAB NUMBER(4) DEFAULT 0,SUMMER_INTERNSHIP_LAB NUMBER(4) DEFAULT 0,FOREIGN KEY(SIC) REFERENCES STUDENT_INFO(SIC))
+
+
+
+DESC SEM_3
+
+
+select * from student_info
+
+
+insert Into student_info values('23mmci36','Rosan');
+
+select * from sem_3
+
+
+SEM_4
+------------------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE SEM_4 (SIC VARCHAR2(10),MOOC NUMBER(4) DEFAULT 0, PROJECT NUMBER(4) DEFAULT 0,COMP_VIVA NUMBER(4) DEFAULT 0,YOGA_NCC_NSS NUMBER(4) DEFAULT 0,FOREIGN KEY(SIC) REFERENCES STUDENT_INFO(SIC));
+
+DESC SEM_4
+
+
+select * from SEM_4

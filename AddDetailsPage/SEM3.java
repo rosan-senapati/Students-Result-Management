@@ -3,15 +3,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
 
 public class SEM3 {
     JFrame frame;
-    JLabel h1, h2, h3, l1, l2, l3, l4, l5, l6, p1, p2, p3,p4;
-    JTextField t1, t2, t3, t4, t5, t6, t7, t8, t9,t10;
+    JLabel h1, h2, h3, l1, l2, l3, l4, l5, l6, p1, p2, p3, p4;
+    JTextField t1, t2, t3, t4, t5, t6, t7, t8, t9, t10;
 
     JButton b1, b2;
 
-    public SEM3() {
+    String sic;
+
+    public SEM3(String sic) {
+        this.sic = sic;
 
         // For Frame
         frame = new JFrame("SGPA Generator"); // THis Needs to be updated
@@ -121,13 +125,12 @@ public class SEM3 {
         p3.setBounds(350, 650, 400, 50);
         p3.setFont(new Font("Arial", Font.CENTER_BASELINE, 30));
         frame.add(p3);
-        
+
         // For Practical-4
         p4 = new JLabel("4.Summer Internship Lab:");
         p4.setBounds(350, 700, 400, 50);
         p4.setFont(new Font("Arial", Font.CENTER_BASELINE, 30));
         frame.add(p4);
-
 
         // For Text-7
         t7 = new JTextField("");
@@ -143,17 +146,67 @@ public class SEM3 {
         t9 = new JTextField("");
         t9.setBounds(800, 656, 100, 30);
         frame.add(t9);
-        
+
         // For Text-10
         t10 = new JTextField("");
         t10.setBounds(800, 710, 100, 30);
         frame.add(t10);
 
-
         // For Button-1
         b1 = new JButton("ADD");
         b1.setBounds(350, 750, 200, 50);
         b1.setFont(new Font("Arial", Font.BOLD, 20));
+        /**************************************
+         * 23-05-24***********************************************************
+         */
+        /* Here i Implemented to push All the Mark detail to SEM_3 table */
+        b1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg) {
+                try {
+                    // here i Implimented to parse empty or non empty string to integer
+                    int daa = (t1.getText().length() != 0) ? Integer.parseInt(t1.getText()) : 0;
+                    int web_dev = (t2.getText().length() != 0) ? Integer.parseInt(t2.getText()) : 0;
+                    int pe1 = (t3.getText().length() != 0) ? Integer.parseInt(t3.getText()) : 0;
+                    int pe2 = (t4.getText().length() != 0) ? Integer.parseInt(t4.getText()) : 0;
+                    int pe3 = (t5.getText().length() != 0) ? Integer.parseInt(t5.getText()) : 0;
+                    int uhv_pe = (t6.getText().length() != 0) ? Integer.parseInt(t6.getText()) : 0;
+                    int daa_lab = (t7.getText().length() != 0) ? Integer.parseInt(t7.getText()) : 0;
+                    int python_lab = (t8.getText().length() != 0) ? Integer.parseInt(t8.getText()) : 0;
+                    int webdev_lab = (t9.getText().length() != 0) ? Integer.parseInt(t9.getText()) : 0;
+                    int summer_internship_lab = (t10.getText().length() != 0) ? Integer.parseInt(t10.getText()) : 0;
+                    Class.forName("oracle.jdbc.driver.OracleDriver");
+
+                    Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system","1234");
+                    String qry = "INSERT INTO SEM_3 VALUES('" + sic + "'," + daa + "," + web_dev + "," + pe1 + "," + pe2  + "," + pe3 + "," + uhv_pe + "," + daa_lab + "," + python_lab + "," + webdev_lab + "," + summer_internship_lab + ")";
+                    Statement s1 = conn.createStatement();
+                    int i = s1.executeUpdate(qry);
+                    if (i > 0) {
+                        JOptionPane.showMessageDialog(frame, "Data Added");
+
+                    }
+                    s1.close();
+                    conn.close();
+
+                } catch (ClassNotFoundException cne) {
+                    System.out.println(cne);
+                } catch (SQLException se) {
+                    JOptionPane.showMessageDialog(frame, "Enter Valid Input", "Alert", JOptionPane.WARNING_MESSAGE);
+                } catch (NumberFormatException ne) {
+                    JOptionPane.showMessageDialog(frame, "Enter Valid Input", "Alert", JOptionPane.WARNING_MESSAGE);
+                }
+                t1.setText(null);
+                t2.setText(null);
+                t3.setText(null);
+                t4.setText(null);
+                t5.setText(null);
+                t6.setText(null);
+                t7.setText(null);
+                t8.setText(null);
+                t9.setText(null);
+                t10.setText(null);
+
+            }
+        });
         frame.add(b1);
 
         // For Button-2
@@ -181,7 +234,7 @@ public class SEM3 {
 
     }
 
-//     public static void main(String args[]) {
-//         SEM3 sm = new SEM3();
-// }
+    // public static void main(String args[]) {
+    //     SEM3 sm = new SEM3("23mmci36");
+    // }
 }

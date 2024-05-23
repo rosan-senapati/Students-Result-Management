@@ -79,7 +79,7 @@ public class AddData_ChooseSem {
     b3.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
     b3.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent arg3) {
-        SEM3 sm3 = new SEM3();
+        SEM3 sm3 = new SEM3(t1.getText());
       }
     });
     frame.add(b3);
@@ -91,7 +91,7 @@ public class AddData_ChooseSem {
     b4.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
     b4.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent arg4) {
-        SEM4 sm4 = new SEM4();
+        SEM4 sm4 = new SEM4(t1.getText());
       }
     });
     frame.add(b4);

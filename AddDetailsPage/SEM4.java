@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
 
 public class SEM4 {
   JFrame frame;
@@ -10,8 +11,10 @@ public class SEM4 {
   JTextField t1, t7, t8, t9;
 
   JButton b1, b2;
+  String sic;
 
-  public SEM4() {
+  public SEM4(String sic) {
+    this.sic = sic;
 
     // For Frame
     frame = new JFrame("SGPA Generator"); // THis Needs to be updated
@@ -86,6 +89,48 @@ public class SEM4 {
     b1 = new JButton("ADD");
     b1.setBounds(350, 710, 200, 50);
     b1.setFont(new Font("Arial", Font.BOLD, 20));
+    /**************************************
+     * 23-05-24***********************************************************
+     */
+    /* Here i Implemented to push All the Mark detail to SEM_4 table */
+    b1.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent arg) {
+        try {
+          // here i Implimented to parse empty or non empty string to integer
+          int mooc = (t1.getText().length() != 0) ? Integer.parseInt(t1.getText()) : 0;
+          int project = (t7.getText().length() != 0) ? Integer.parseInt(t7.getText()) : 0;
+          int comp_viva = (t8.getText().length() != 0) ? Integer.parseInt(t8.getText()) : 0;
+          int yoga_ncc_nss = (t9.getText().length() != 0) ? Integer.parseInt(t9.getText()) : 0;
+          Class.forName("oracle.jdbc.driver.OracleDriver");
+
+          Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "1234");
+          String qry = "INSERT INTO SEM_4 VALUES('" + sic + "'," + mooc + "," + project + "," + comp_viva + ","
+              + yoga_ncc_nss + ")";
+          Statement s1 = conn.createStatement();
+          int i = s1.executeUpdate(qry);
+          if (i > 0) {
+            JOptionPane.showMessageDialog(frame, "Data Added");
+
+          }
+          s1.close();
+          conn.close();
+
+        } catch (ClassNotFoundException cne) {
+          System.out.println(cne);
+        } catch (SQLException se) {
+          System.out.println(se);
+          JOptionPane.showMessageDialog(frame, "Enter Valid Input", "Alert", JOptionPane.WARNING_MESSAGE);
+        } catch (NumberFormatException ne) {
+          System.out.println(ne);
+          JOptionPane.showMessageDialog(frame, "Enter Valid Input", "Alert", JOptionPane.WARNING_MESSAGE);
+        }
+        t1.setText(null);
+        t7.setText(null);
+        t8.setText(null);
+        t9.setText(null);
+
+      }
+    });
     frame.add(b1);
 
     // For Button-2
@@ -108,6 +153,6 @@ public class SEM4 {
   }
 
   // public static void main(String args[]) {
-  //   SEM4 sm = new SEM4();
+  //   SEM4 sm = new SEM4("23mmci36");
   // }
 }
