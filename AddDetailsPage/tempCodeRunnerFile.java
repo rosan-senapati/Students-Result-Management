@@ -1,3 +1,3 @@
 public static void main(String args[]) {
-    SEM4 sm = new SEM4();
-  }
+        SEM2 sm = new SEM2("23mmci36");
+    }

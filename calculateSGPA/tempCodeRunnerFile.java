@@ -1,3 +1,1 @@
-//For Button-1
-    // b1 = new JButton("CHECK");
-    // b1.setBounds();
+int MATH,OS,COA,C,CN,ENG,C_LAB,OS_LAB,ENG_LAB;
