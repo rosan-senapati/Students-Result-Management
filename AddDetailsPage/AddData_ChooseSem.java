@@ -54,7 +54,7 @@ public class AddData_ChooseSem {
     b1.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
     b1.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent arg1) {
-        SEM1 sm1 = new SEM1(t1.getText());
+        SEM1 sm1 = new SEM1(t1.getText().toUpperCase());
       }
     });
 
@@ -67,7 +67,7 @@ public class AddData_ChooseSem {
     b2.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
     b2.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent arg3) {
-        SEM2 sm2 = new SEM2(t1.getText());
+        SEM2 sm2 = new SEM2(t1.getText().toUpperCase());
       }
     });
     frame.add(b2);
@@ -79,7 +79,7 @@ public class AddData_ChooseSem {
     b3.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
     b3.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent arg3) {
-        SEM3 sm3 = new SEM3(t1.getText());
+        SEM3 sm3 = new SEM3(t1.getText().toUpperCase());
       }
     });
     frame.add(b3);
@@ -91,7 +91,7 @@ public class AddData_ChooseSem {
     b4.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
     b4.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent arg4) {
-        SEM4 sm4 = new SEM4(t1.getText());
+        SEM4 sm4 = new SEM4(t1.getText().toUpperCase());
       }
     });
     frame.add(b4);
@@ -113,8 +113,8 @@ public class AddData_ChooseSem {
 
     b5.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent arg) {
-        String sic = t1.getText();
-        String name = t2.getText();
+        String sic = t1.getText().toUpperCase();
+        String name = t2.getText().toUpperCase();
         // to check user filled both the fields or not
         if (name.length() == 0 || sic.length() == 0)
           JOptionPane.showMessageDialog(frame, "Please Enter All Details!!!!!", "Important",

@@ -92,7 +92,7 @@ public class YourSGPA {
                 // If User Check Semester-1 in ComboBox
                 if (c1.getSelectedItem() == "Semester-1") {
                     try {
-                        String sic = t1.getText(); // Get the sic from TextField
+                        String sic = t1.getText().toUpperCase(); // Get the sic from TextField
 
                         // JDBC Connection
                         Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -151,7 +151,7 @@ public class YourSGPA {
                 // If User Check Semester-2 In Combobox
                 if (c1.getSelectedItem() == "Semester-2") {
                     try {
-                        String sic = t1.getText();
+                        String sic = t1.getText().toUpperCase();
                         Class.forName("oracle.jdbc.driver.OracleDriver");
 
                         Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system",
@@ -199,7 +199,7 @@ public class YourSGPA {
                 // if User Selects Semester-3 from combobox
                 else if (c1.getSelectedItem() == "Semester-3") {
                     try {
-                        String sic = t1.getText();
+                        String sic = t1.getText().toUpperCase();
                         Class.forName("oracle.jdbc.driver.OracleDriver");
 
                         Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system",
@@ -249,7 +249,7 @@ public class YourSGPA {
                 // If User Selects Semester-4
                 if (c1.getSelectedItem() == "Semester-4") {
                     try {
-                        String sic = t1.getText();
+                        String sic = t1.getText().toUpperCase();
 
                         Class.forName("oracle.jdbc.driver.OracleDriver");
 

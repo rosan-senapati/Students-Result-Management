@@ -1,8 +1,11 @@
 package ShowDetails;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
+import java.sql.*;
+import java.util.*;
+
+import javax.swing.table.*;
 
 public class ShowDetailsForm {
     JFrame frame;
@@ -53,7 +56,7 @@ public class ShowDetailsForm {
         frame.add(l3);
 
         // For ComboBox-1
-        String[] semester = { "All","Semester-1", "Semester-2", "Semester-3", "Semester-4" };
+        String[] semester = { "Semester-1", "Semester-2", "Semester-3", "Semester-4" };
         c1 = new JComboBox<>(semester);
         c1.setBounds(500, 260, 250, 30);
         c1.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -63,6 +66,101 @@ public class ShowDetailsForm {
         b1 = new JButton("SHOW");
         b1.setBounds(260, 330, 150, 40);
         b1.setFont(new Font("Arial", Font.PLAIN, 20));
+        b1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg) {
+                if (t1.getText().length() == 0 || t2.getText().length() == 0)
+                    JOptionPane.showMessageDialog(frame, "Please Enter Both Field!!!!");
+                else {
+                    String sic = t1.getText().toUpperCase();
+                    String name = t2.getText().toUpperCase();
+                    ArrayList columnNames = new ArrayList();
+                    ArrayList data = new ArrayList();
+                    try {
+                        Class.forName("oracle.jdbc.driver.OracleDriver");
+                        Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe",
+                                "system", "1234");
+                        Statement stmt = connection.createStatement();
+                        ResultSet rs;
+                        if (c1.getSelectedItem() == "Semester-1")
+                            rs = stmt.executeQuery("Select * from student_info natural join sem_1 where sic = '" + sic
+                                    + "' and name = '" + name + "'");
+                        else if (c1.getSelectedItem() == "Semester-2")
+                            rs = stmt.executeQuery("select * from Student_info Natural Join sem_2 where sic = '" + sic
+                                    + "' and name = '" + name + "'");
+                        else if (c1.getSelectedItem() == "Semester-3")
+                            rs = stmt.executeQuery("select * from Student_info Natural Join sem_3 where sic = '" + sic
+                                    + "' and name = '" + name + "'");
+                        else if (c1.getSelectedItem() == "Semester-4")
+                            rs = stmt.executeQuery("select * from Student_info Natural Join sem_4 where sic = '" + sic
+                                    + "' and name = '" + name + "'");
+                        else {
+                            rs = null;
+                        }
+
+                        {
+                            ResultSetMetaData md = rs.getMetaData();
+                            int columns = md.getColumnCount();
+
+                            // Get column names
+                            for (int i = 1; i <= columns; i++) {
+                                columnNames.add(md.getColumnName(i));
+                            }
+
+                            // Get row data
+                            while (rs.next()) {
+                                ArrayList row = new ArrayList(columns);
+
+                                for (int i = 1; i <= columns; i++) {
+                                    row.add(rs.getObject(i));
+                                }
+
+                                data.add(row);
+                            }
+                        }
+                    } catch (SQLException e) {
+                        System.out.println(e.getMessage());
+                    } catch (ClassNotFoundException cf) {
+                        System.out.println(cf);
+                    }
+
+                    Vector columnNamesVector = new Vector();
+                    Vector dataVector = new Vector();
+
+                    for (int i = 0; i < data.size(); i++) {
+                        ArrayList subArray = (ArrayList) data.get(i);
+                        Vector subVector = new Vector();
+                        for (int j = 0; j < subArray.size(); j++) {
+                            subVector.add(subArray.get(j));
+                        }
+                        dataVector.add(subVector);
+                    }
+
+                    for (int i = 0; i < columnNames.size(); i++)
+                        columnNamesVector.add(columnNames.get(i));
+
+                    // Create table with database data
+                    JTable table = new JTable(dataVector, columnNamesVector) {
+                        public Class getColumnClass(int column) {
+                            for (int row = 0; row < getRowCount(); row++) {
+                                Object o = getValueAt(row, column);
+
+                                if (o != null) {
+                                    return o.getClass();
+                                }
+                            }
+
+                            return Object.class;
+                        }
+                    };
+
+                    table.setBackground(Color.CYAN);
+                    JScrollPane scrollPane = new JScrollPane(table);
+                    scrollPane.setBounds(850, 200, 670, 100);
+                    frame.add(scrollPane);
+                }
+
+            }
+        });
         frame.add(b1);
 
         // For Button-1
@@ -82,7 +180,6 @@ public class ShowDetailsForm {
         frame.add(b2);
 
         frame.setVisible(true);
-
 
     }
 

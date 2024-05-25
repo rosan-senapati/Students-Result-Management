@@ -1,5 +1,4 @@
 package AddDetailsPage;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -179,6 +178,7 @@ public class SEM1 {
         } catch (ClassNotFoundException cne) {
           System.out.println(cne);
         } catch (SQLException se) {
+          System.out.println(se);
           JOptionPane.showMessageDialog(frame,"Enter Valid Input","Alert",JOptionPane.WARNING_MESSAGE);
         }
         catch(NumberFormatException ne)
@@ -224,6 +224,6 @@ public class SEM1 {
   }
 
   // public static void main(String args[]) {
-  // SEM1 sm = new SEM1("23mmci36");
+  // SEM1 sm = new SEM1("23mmci01");
   // }
 }
