@@ -18,6 +18,7 @@ public class ShowDetailsForm {
         frame = new JFrame("SGPA Generator"); // THis Needs to be updated
         frame.setLocation(100, 100);
         frame.setSize(600, 600);
+        frame.setResizable(false);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLayout(null);
 

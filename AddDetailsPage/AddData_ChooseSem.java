@@ -9,7 +9,7 @@ import java.sql.*;
 public class AddData_ChooseSem {
   JFrame frame;
   JLabel l1, l2, l3;
-  JButton b1, b2, b3, b4, b5;
+  JButton b1, b2, b3, b4, b5,b6;
   JTextField t1, t2;
 
   public AddData_ChooseSem() {
@@ -17,6 +17,7 @@ public class AddData_ChooseSem {
     frame = new JFrame("SGPA Generator"); // This Needs to be updated
     frame.setLocation(100, 100);
     frame.setSize(600, 600);
+    frame.setResizable(false);
     frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
     frame.setLayout(null);
 
@@ -79,7 +80,7 @@ public class AddData_ChooseSem {
     b3.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
     b3.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent arg3) {
-        SEM3 sm3 = new SEM3(t1.getText().toUpperCase());
+       SEM3 sm3 = new SEM3(t1.getText().toUpperCase());
       }
     });
     frame.add(b3);
@@ -157,6 +158,20 @@ public class AddData_ChooseSem {
       }
     });
     frame.add(b5);
+
+    // ImageIcon icon = new ImageIcon("home.png");
+    // b6 = new JButton();
+    // Image img = icon.getImage();
+    // Image newimg = img.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
+    // icon = new ImageIcon(newimg);  
+    // b6.setIcon(icon);
+    // b6.setBounds(1470,40,40,40);
+    // b6.addActionListener(new ActionListener() {
+    //   public void actionPerformed(ActionEvent arg) {
+       
+    //   }
+    // });
+    // frame.add(b6);
 
     frame.setVisible(true);
   }

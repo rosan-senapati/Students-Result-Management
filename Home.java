@@ -1,3 +1,4 @@
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,15 +9,24 @@ import ShowDetails.*;
 
 class Home {
   JFrame frame;
-  JLabel l1, l2, l3, l4;
+  JLabel l1, l2, l3, l4,background;
   JButton b1, b2, b3;
+  // ImageIcon img;
 
-  Home() { // for the Main Frame
+  public Home() { // for the Main Frame
     frame = new JFrame("SGPA Generator"); // THis Needs to be updated
     frame.setLocation(100, 100);
     frame.setSize(600, 600);
+    frame.setResizable(false);
     frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
     frame.setLayout(null);
+
+    // //For Background Image
+    // img = new ImageIcon("background.jpg");
+    // background = new JLabel("",img,JLabel.CENTER);
+    // background.setBounds(0,0,1536,800);
+    // frame.add(background);
+
 
     // for the Label-1
     l1 = new JLabel("Welcome to SGPA Generator");

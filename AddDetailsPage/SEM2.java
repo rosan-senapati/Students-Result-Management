@@ -166,7 +166,7 @@ public class SEM2 {
           Class.forName("oracle.jdbc.driver.OracleDriver");
 
           Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "1234");
-          String qry = "INSERT INTO SEM_2 VALUES('" + sic + "'," + dsa+ "," + java + "," + dbms + "," + ecom + "," + seu+ "," + dsa_lab + "," + java_lab + "," + seu_lab + "," + dbms_lab + ")";
+          String qry = "INSERT INTO SEM_2 VALUES('" + sic.toUpperCase() + "'," + dsa+ "," + java + "," + dbms + "," + ecom + "," + seu+ "," + dsa_lab + "," + java_lab + "," + seu_lab + "," + dbms_lab + ")";
           Statement s1 = conn.createStatement();
           int i = s1.executeUpdate(qry);
           if (i > 0) {

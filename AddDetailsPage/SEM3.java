@@ -21,6 +21,7 @@ public class SEM3 {
         frame = new JFrame("SGPA Generator"); // THis Needs to be updated
         frame.setLocation(100, 100);
         frame.setSize(600, 600);
+        frame.setResizable(false);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLayout(null);
 
@@ -177,7 +178,7 @@ public class SEM3 {
                     Class.forName("oracle.jdbc.driver.OracleDriver");
 
                     Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system","1234");
-                    String qry = "INSERT INTO SEM_3 VALUES('" + sic + "'," + daa + "," + web_dev + "," + pe1 + "," + pe2  + "," + pe3 + "," + uhv_pe + "," + daa_lab + "," + python_lab + "," + webdev_lab + "," + summer_internship_lab + ")";
+                    String qry = "INSERT INTO SEM_3 VALUES('" + sic.toUpperCase() + "'," + daa + "," + web_dev + "," + pe1 + "," + pe2  + "," + pe3 + "," + uhv_pe + "," + daa_lab + "," + python_lab + "," + webdev_lab + "," + summer_internship_lab + ")";
                     Statement s1 = conn.createStatement();
                     int i = s1.executeUpdate(qry);
                     if (i > 0) {
