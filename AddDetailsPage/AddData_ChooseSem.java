@@ -131,10 +131,7 @@ public class AddData_ChooseSem {
             int i = s1.executeUpdate(qry);
             if (i > 0) {
               JOptionPane.showMessageDialog(frame, "Data Inserted");
-          b1.setVisible(true);
-          b2.setVisible(true);
-          b3.setVisible(true);
-          b4.setVisible(true);
+         
 
             }
             s1.close();
@@ -152,6 +149,10 @@ public class AddData_ChooseSem {
           // t1.setText(null);
           // t2.setText(null);
           //This is for showing semester button after successfully submiting the data
+          b1.setVisible(true);
+          b2.setVisible(true);
+          b3.setVisible(true);
+          b4.setVisible(true);
           
         }
 

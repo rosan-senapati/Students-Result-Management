@@ -7,11 +7,12 @@ import AddDetailsPage.*;
 import calculateSGPA.YourSGPA;
 import ShowDetails.*;
 
+
 class Home {
   JFrame frame;
   JLabel l1, l2, l3, l4,background;
   JButton b1, b2, b3;
-  // ImageIcon img;
+  ImageIcon img;
 
   public Home() { // for the Main Frame
     frame = new JFrame("SGPA Generator"); // THis Needs to be updated
@@ -21,11 +22,7 @@ class Home {
     frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
     frame.setLayout(null);
 
-    // //For Background Image
-    // img = new ImageIcon("background.jpg");
-    // background = new JLabel("",img,JLabel.CENTER);
-    // background.setBounds(0,0,1536,800);
-    // frame.add(background);
+  
 
 
     // for the Label-1
